@@ -88,3 +88,32 @@ ax.plot(bmi, y_test, 'or', label='actual')
 ax.plot(bmi, y_pred, '*b', label='prediction')
 plt.legend()
 plt.show()
+
+
+print('ridge regression:')
+from sklearn.linear_model import Ridge
+rreg = Ridge()
+rreg.fit(X_train, y_train)
+y_pred = rreg.predict(X_test)
+for i in np.random.choice(len(y_test), 10):
+    print(f'{i}: actual: {y_test[i]}, prediction: {y_pred[i]:.1f}')
+# explained variance score (1.0 = perfect)
+print(f'score: {explained_variance_score(y_test, y_pred):.2f}')    
+print(f'mean squared error: {mean_squared_error(y_test, y_pred):.2f}')
+print(f'r2_score: {r2_score(y_test, y_pred):.2f}')
+
+print('varying ridge alpha:')
+alphas = np.linspace(0.01, 0.5, num=10)
+plt.figure()
+for a in alphas:
+    print(f'alpha = {a:.2f}:')
+    model = Ridge(alpha=a)
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    print(f'mean squared error: {mean_squared_error(y_test, y_pred):.2f}')
+    print(f'r2_score: {r2_score(y_test, y_pred):.2f}')
+    plt.plot(a, r2_score(y_test, y_pred), 'og', markersize=10)
+plt.xlabel('alpha')
+plt.ylabel('r2 score')
+
+plt.show()
