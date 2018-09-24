@@ -59,7 +59,7 @@ print('support vector machine:')
 from sklearn.svm import SVC
 svc = SVC(kernel='linear')
 svc.fit(X_train, y_train)
-y_pred = logreg.predict(X_test)
+y_pred = svc.predict(X_test)
 print(confusion_matrix(y_test, y_pred))  
 print(classification_report(y_test, y_pred))
 
