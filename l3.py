@@ -56,7 +56,7 @@ print('cross val score:', cross_val_score(lass, X, y, cv=nfolds))
 print('grid search to optimize parameters:')
 from sklearn.model_selection import GridSearchCV
 print('svc:')
-param_grid = {'C': [0.01, 0.1, 1, 1.5, 2],  # Inverse of regularization strength
+param_grid = {'C': [0.01, 0.1, 1, 1.5, 2],
               'kernel': ['rbf', 'linear', 'poly'], 
               'shrinking': [True, False]}
 grid_search = GridSearchCV(svc, 
