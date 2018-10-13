@@ -59,6 +59,7 @@ x1 = np.random.normal(size=100)
 x2 = np.random.normal(size=100)
 x3 = x1 + x2
 xc = np.c_[x1, x2, x3]
+
 from sklearn.decomposition import PCA
 pca = PCA()
 pca.fit(xc)
